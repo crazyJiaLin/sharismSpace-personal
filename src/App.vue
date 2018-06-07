@@ -48,9 +48,9 @@ export default {
       })
       .then(function (response) {
           let data = response.data;
-          console.log(data);
+          console.log('用户信息：',data);
           if(data.code == 1){
-            that.$store.state.userInfo = data.value;  //将查询的用户信息添加到vuex中
+            that.$store.state.blogUserInfo = data.value;  //将查询的用户信息添加到vuex中
             // console.log(that.$store.state);
           }else{
               that.$message.error(data.message);

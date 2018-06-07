@@ -26,7 +26,7 @@ import {store} from './store/store.js'
 // 公共样式
 import './assets/css/reset.css'
 import './assets/css/public.css'
-import './assets/css/font-awesome.min.css'
+import './assets/css/iconfont.css'
 import './assets/css/animate.css'
 
 //自封装全局工具方法

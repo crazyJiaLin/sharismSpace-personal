@@ -10,11 +10,11 @@
                         <span class="blog-blogType">{{blogInfo.blogType}}</span>
                     </div>
                     <div class="blog-info-right-wrapper fr">
-                        <span><i class="fa fa-eye"></i> {{blogInfo.readCount}}</span>
+                        <span><i class="iconfont icon-eye"></i> {{blogInfo.readCount}}</span>
                         <span @click.stop="clickThumbsUp" :class="isLike?'thumbs-up-blog like-blog':'thumbs-up-blog'">
-                            <i :class="isLike?'fa fa-thumbs-up':'fa fa-thumbs-o-up'"></i> {{blogInfo.praiseAmount}}
+                            <i :class="isLike?'iconfont icon-dianzan1':'iconfont icon-dianzan'"></i> {{blogInfo.praiseAmount}}
                         </span>
-                        <span><i class="fa fa fa-share-square-o"></i> {{blogInfo.transpondAmount}}</span>
+                        <span><i class="iconfont icon-fenxiang i-rotate-90"></i> {{blogInfo.transpondAmount}}</span>
                         <span class="publish-date">{{blogInfo.publishDate}}</span>
                     </div>
                 </div>
@@ -101,7 +101,7 @@
                return this.blogUserInfo.userSex == '女' ? '<i class="fa fa-venus"></i>' : '<i class="fa fa-mars"></i>';
             },
             blogUserInfo(){
-                return this.$store.state.userInfo;
+                return this.$store.state.blogUserInfo;
             }
         },
         data(){
@@ -134,6 +134,7 @@
                 let that = this;
                 var blogId = that.blogInfo.id;
                 var formData=new FormData();
+                console.log(blogId);
                 formData.append("blogId",blogId);
                 this.$axios({
                     method : 'post',
@@ -159,6 +160,9 @@
             insertBlogLike(){
                 let that = this;
                 let userInfo = that.$store.state.userInfo;
+                if(!userInfo.id || !userInfo.userNickname){
+                    that.$message.error('请登录');
+                }
                 var map = {
                     //用户id	
                     "userId" : userInfo.id,
